@@ -8,6 +8,22 @@ class TestDefault(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.browser = Chrome()
+        self.now_task = 0
+
+
+    def add_task(self,task_name):
+        # 用户点击了左下角的图标
+        self.browser.find_element_by_id('functions-button').click()
+        sleep(1)
+        # 他点击了新建按钮
+        self.browser.find_element_by_id('new-item-button').click()
+        sleep(1)
+        # 有个对话框出现了，用户输入了这个任务的名字
+        self.browser.find_elements_by_class_name('modal')[self.now_task].find_element_by_tag_name('input').send_keys(task_name)
+        sleep(1)
+        # 用户点击了确定
+        self.browser.find_elements_by_class_name('modal')[self.now_task].find_elements_by_tag_name('button')[1].click()
+        sleep(1)
 
     def test_default(self):
         # 用户打开了浏览器/App
@@ -27,30 +43,17 @@ class TestDefault(unittest.TestCase):
         # 用户发现任务列表空空如也
         self.assertFalse(self.browser.find_elements_by_class_name('task'))
 
-        def add_task(self,task_name):
-            # 用户点击了左下角的图标
-            self.browser.find_element_by_id('functions-button').click()
-            sleep(1)
-            # 他点击了新建按钮
-            self.browser.find_element_by_id('new-item-button').click()
-            sleep(1)
-            # 有个对话框出现了，用户输入了这个任务的名字
-            self.browser.find_element_by_tag_name('input').send_keys(task_name)
-            # 用户点击了确定
-            self.browser.find_element_by_id('ok').click()
-            sleep(1)
-
         # 用户决定添加一项任务
-        add_task('Task 1')
+        self.add_task('Task 1')
         # 任务出现在了任务列表中
-        self.assertIn('Task 1', self.browser.find_element_by_class_name('task').text)
+        self.assertIn('Task 1', self.browser.find_element_by_class_name('tasks').text)
         # 用户又添加了几项任务
-        add_task('Task 2')
-        self.assertIn('Task 2', self.browser.find_element_by_class_name('task').text)
-        add_task('Task 3')
-        self.assertIn('Task 3', self.browser.find_element_by_class_name('task').text)
-        add_task('Task 4')
-        self.assertIn('Task 3', self.browser.find_element_by_class_name('task').text)
+        self.add_task('Task 2')
+        self.assertIn('Task 2', self.browser.find_element_by_class_name('tasks').text)
+        self.add_task('Task 3')
+        self.assertIn('Task 3', self.browser.find_element_by_class_name('tasks').text)
+        self.add_task('Task 4')
+        self.assertIn('Task 3', self.browser.find_element_by_class_name('tasks').text)
 
         # 用户回到了目前任务的页面
         self.browser.find_elements_by_class_name('q-tab')[0].click()
