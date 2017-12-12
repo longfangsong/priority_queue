@@ -1,6 +1,6 @@
 **该项目已经有beta版本发布！**
 
-**This Project no has beta release!**
+**This Project now has beta release!**
 # 优先队列
 
 这是一个任务管理App。
