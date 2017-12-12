@@ -2,16 +2,17 @@
   <q-layout ref="layout" view="hHr LpR lFf" :right-breakpoint="1100">
     <q-fixed-position corner="bottom-right" :offset="[18, 96]">
       <q-fab
+        color="purple"
         icon="settings"
         direction="up"
         class="vertical-middle"
         id="functions-button"
       >
-        <q-fab-action :icon="this.list_state === 'edit'?'close':'mode edit'" id="edit-order-button"
+        <q-fab-action color="secondary" :icon="this.list_state === 'edit'?'close':'mode edit'" id="edit-order-button"
                       @click="on_mode_button_click"/>
-        <q-fab-action :icon="this.list_state === 'delete'?'close':'delete forever'"
+        <q-fab-action color="negative" :icon="this.list_state === 'delete'?'close':'delete forever'"
                       @click="on_delete_button_click" id="delete-button"/>
-        <q-fab-action icon="add" @click="create_new_item" id="new-item-button"/>
+        <q-fab-action color="positive" icon="add" @click="create_new_item" id="new-item-button"/>
       </q-fab>
     </q-fixed-position>
     <q-list class="tasks">
@@ -35,8 +36,53 @@
 
 </template>
 
-<style scoped>
+<style scoped lang="stylus">
+  .sortable-ghost {
+    background: #e6e6ff
+    color: gray
+  }
 
+  .sortable-drag {
+    background: white
+  }
+
+  .drag-handle:hover {
+    cursor: move
+  }
+
+  .delete-button {
+    cursor: pointer
+  }
+
+  .q-list {
+    padding: 0
+  }
+
+  .q-item:first-of-type {
+    border: 3px solid cornflowerblue
+    border-right-width: 8px
+    border-left-width: 8px
+    & .q-item-main {
+      position: relative
+      left: -8px
+    }
+    & .q-item-side {
+      position: relative
+      left: 8px
+    }
+    transition: border 0.5s
+  }
+
+  .test:not(:last-of-type,:first-of-type) {
+    border-bottom: solid #bebebe 1px
+  }
+
+  .dragging .q-item:first-of-type {
+    border: 3px solid white
+    border-bottom: solid #bebebe 1px
+    border-right-width: 8px
+    border-left-width: 8px
+  }
 </style>
 
 <script>

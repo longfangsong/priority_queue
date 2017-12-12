@@ -30,6 +30,7 @@
     QTab
   } from 'quasar'
 
+  const colors = ['primary', 'amber', 'secondary', 'orange', 'tertiary', 'lime', 'cyan', 'purple', 'brown', 'blue']
   export default {
     directives: {
       Ripple
@@ -40,16 +41,45 @@
       QToolbarTitle,
       QTabs,
       QTab
+    },
+    data () {
+      return {
+        color: colors[0],
+        index: 0
+      }
+    },
+    mounted () {
+      this.timer = setInterval(() => {
+        this.index = (this.index + 1) % colors.length
+        this.color = colors[this.index]
+      }, 2000)
     }
   }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
   @import '~variables'
   #q-app {
     max-height: 100vh
     overflow: hidden
     padding-top: 100px
     padding-bottom: 48px
+  }
+
+  .q-toolbar {
+    height: 100px
+    text-align: center
+    transition: background 2.5s
+    cursor: default
+    .q-toolbar-title {
+      font-size: 30pt
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    }
+  }
+
+  .q-tabs-bar {
+    /*border-color: red !important*/
+    color: $pink-14 !important
+    border-top-width: 4px !important
   }
 </style>

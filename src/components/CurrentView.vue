@@ -1,5 +1,5 @@
 <template>
-  <div class="major-view">
+  <div class="current-view">
     <q-card>
       <q-card-title>
         你现在应该做的事是
@@ -14,7 +14,7 @@
             <p>{{ todoList.length > 0 ? todoList[0].name : '还没有要做的事……' }}</p>
           </div>
         </q-field>
-        <q-btn id="task-finish" @click="on_task_finish">
+        <q-btn v-if="todoList.length > 0" color="primary" id="task-finish" @click="on_task_finish">
           <q-icon name="done"/>
           我做完了！
           <q-icon name="mood"/>
@@ -26,8 +26,26 @@
 
 </template>
 
-<style scoped>
-
+<style scoped lang="stylus">
+  .current-view {
+    text-align center
+    margin-top 15vh
+    .q-card-title {
+      font-weight bold
+    }
+    .todo-now {
+      font-size 14pt
+      height 26pt
+      border-radius 4px
+      p {
+        margin 0
+        font-size 20pt
+      }
+    }
+    .q-btn {
+      margin-top 10px
+    }
+  }
 </style>
 
 <script>
