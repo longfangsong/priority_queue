@@ -53,7 +53,13 @@ class TestDefault(unittest.TestCase):
         self.add_task('Task 3')
         self.assertIn('Task 3', self.browser.find_element_by_class_name('tasks').text)
         self.add_task('Task 4')
-        self.assertIn('Task 3', self.browser.find_element_by_class_name('tasks').text)
+        self.assertIn('Task 4', self.browser.find_element_by_class_name('tasks').text)
+        self.add_task('Task 5')
+        self.assertIn('Task 5', self.browser.find_element_by_class_name('tasks').text)
+        self.add_task('Task 6')
+        self.assertIn('Task 6', self.browser.find_element_by_class_name('tasks').text)
+        self.add_task('Task 7')
+        self.assertIn('Task 7', self.browser.find_element_by_class_name('tasks').text)
 
         # 用户回到了目前任务的页面
         self.browser.find_elements_by_class_name('q-tab')[0].click()
@@ -95,13 +101,11 @@ class TestDefault(unittest.TestCase):
         # 他点击了删除按钮
         self.browser.find_element_by_id('delete-button').click()
         sleep(1)
-        # 他点击了每个项目的删除按钮（应该有三个项目）
-        self.browser.find_element_by_class_name('delete-item').click()
-        sleep(1)
-        self.browser.find_element_by_class_name('delete-item').click()
-        sleep(1)
-        self.browser.find_element_by_class_name('delete-item').click()
-        sleep(1)
+        # 他点击了每个项目的删除按钮（应该有六个项目）
+        for _ in range(6):
+            self.browser.find_element_by_class_name('delete-item').click()
+            sleep(1)
+
         # 用户发现任务列表又空空如也了
         self.assertFalse(self.browser.find_elements_by_class_name('task'))
 

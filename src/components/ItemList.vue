@@ -1,6 +1,23 @@
 <template>
   <q-layout ref="layout" view="hHr LpR lFf" :right-breakpoint="1100">
-    <q-fixed-position corner="bottom-right" :offset="[18, 96]">
+    <q-list class="tasks">
+      <draggable v-model="todoList" :options="{group: 'test',animation:'200',handle:'.drag-handle'}" :class="dragging"
+                 @start="dragStart" @end="dragEnd">
+        <transition-group>
+          <q-item v-for="element in todoList" :key="element.id" class="task">
+            <q-item-main>
+              {{ element.name }}
+            </q-item-main>
+            <q-item-side right>
+              <q-item-tile class="drag-handle" v-if="list_state === 'edit'" icon="reorder" color="gray"/>
+              <q-item-tile class="delete-item" v-else-if="list_state === 'delete'" icon="remove circle" color="red"
+                           @click="remove_item(element.id)"/>
+            </q-item-side>
+          </q-item>
+        </transition-group>
+      </draggable>
+    </q-list>
+    <q-fixed-position corner="bottom-right" :offset="[32, 96]">
       <q-fab
         color="purple"
         icon="settings"
@@ -15,23 +32,6 @@
         <q-fab-action color="positive" icon="add" @click="create_new_item" id="new-item-button"/>
       </q-fab>
     </q-fixed-position>
-    <q-list class="tasks">
-      <draggable v-model="todoList" :options="{group: 'test',animation:'200',handle:'.drag-handle'}" :class="dragging"
-                 @start="dragStart" @end="dragEnd">
-        <transition-group>
-          <q-item v-for="element in todoList" :key="element.id" class="task">
-            <q-item-main>
-              {{element.name}}
-            </q-item-main>
-            <q-item-side right>
-              <q-item-tile class="drag-handle" v-if="list_state === 'edit'" icon="reorder" color="gray"/>
-              <q-item-tile class="delete-item" v-else-if="list_state === 'delete'" icon="remove circle" color="red"
-                           @click="remove_item(element.id)"/>
-            </q-item-side>
-          </q-item>
-        </transition-group>
-      </draggable>
-    </q-list>
   </q-layout>
 
 </template>
@@ -82,6 +82,18 @@
     border-bottom: solid #bebebe 1px
     border-right-width: 8px
     border-left-width: 8px
+  }
+
+  .q-fab-actions {
+    z-index: 100;
+  }
+
+  .task {
+    z-index 0;
+  }
+
+  .delete-item {
+    cursor: pointer;
   }
 </style>
 
