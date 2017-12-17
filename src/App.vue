@@ -75,10 +75,11 @@
       font-size: 30pt
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
     }
+    -webkit-user-select: none
+    -moz-user-select: none
   }
 
   .q-tabs-bar {
-    /*border-color: red !important*/
     color: $pink-14 !important
     border-top-width: 4px !important
   }

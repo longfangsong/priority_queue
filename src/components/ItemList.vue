@@ -58,6 +58,8 @@
     padding: 0
     max-height: calc(100vh - 170px)
     overflow: scroll
+    -webkit-user-select: none
+    -moz-user-select: none
   }
 
   .q-item:first-of-type {

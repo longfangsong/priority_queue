@@ -39,6 +39,7 @@
       p {
         margin 0
         font-size 20pt
+        overflow scroll
       }
     }
     .q-btn {
