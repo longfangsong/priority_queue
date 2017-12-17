@@ -1,7 +1,7 @@
 <template>
   <q-layout ref="layout" view="hHr LpR lFf" :right-breakpoint="1100">
     <q-list class="tasks">
-      <draggable v-model="todoList" :options="{group: 'test',animation:'200',handle:'.drag-handle'}" :class="dragging"
+      <draggable v-model="todoList" :options="{group: 'test',animation:'200'}" :class="dragging"
                  @start="dragStart" @end="dragEnd">
         <transition-group>
           <q-item v-for="element in todoList" :key="element.id" class="task">
@@ -56,6 +56,8 @@
 
   .q-list {
     padding: 0
+    max-height: calc(100vh - 170px)
+    overflow: scroll
   }
 
   .q-item:first-of-type {

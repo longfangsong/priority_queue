@@ -8,8 +8,7 @@
       <q-card-main>
         <q-field
           icon="assignment"
-          class="items-center"
-        >
+          class="items-center">
           <div id="now-should-do" class="todo-now bg-amber text-white row items-center justify-center">
             <p>{{ todoList.length > 0 ? todoList[0].name : '还没有要做的事……' }}</p>
           </div>
