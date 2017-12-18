@@ -5,9 +5,9 @@
 
 ## App 效果预览：
 
-![m2fCS.md.png](https://s1.ax2x.com/2017/12/18/m2fCS.md.png)
+<img src="https://s1.ax2x.com/2017/12/18/m2fCS.md.png" width="200" style=" max-width: 100%; display: inline-block">
 
-![m2i2h.md.png](https://s1.ax2x.com/2017/12/18/m2i2h.md.png)
+<img src="https://s1.ax2x.com/2017/12/18/m2i2h.md.png" width="200" style="max-width: 100%; display: inline-block">
 
 ## App功能简单介绍
 
