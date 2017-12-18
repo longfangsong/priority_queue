@@ -1,7 +1,9 @@
 <template>
   <q-layout ref="layout" view="hHr LpR lFf" :right-breakpoint="1100">
     <q-list class="tasks">
-      <draggable v-model="todoList" :options="{group: 'test',animation:'200'}" :class="dragging"
+      <draggable v-model="todoList"
+                 :options="{group: 'test',animation:'200',handle:list_state === 'edit'?'.drag-handle':'.q-item',delay:list_state === 'edit'?'0':'400'}"
+                 :class="dragging"
                  @start="dragStart" @end="dragEnd">
         <transition-group>
           <q-item v-for="element in todoList" :key="element.id" class="task">
@@ -177,6 +179,9 @@
         this.save()
       },
       dragStart: function () {
+        if (this.list_state !== 'edit') {
+          navigator.vibrate(300)
+        }
         this.dragging = 'dragging'
       },
       dragEnd: function () {

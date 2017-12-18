@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 quasar build
 cd cordova
 cordova prepare ios

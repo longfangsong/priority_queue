@@ -31,6 +31,11 @@
   } from 'quasar'
 
   const colors = ['primary', 'amber', 'secondary', 'orange', 'tertiary', 'lime', 'cyan', 'purple', 'brown', 'blue']
+  document.querySelector('body').addEventListener('touchmove', function (e) {
+    if (!document.querySelector('.q-list').contains(e.target)) {
+      e.preventDefault()
+    }
+  })
   export default {
     directives: {
       Ripple
