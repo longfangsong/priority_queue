@@ -1,7 +1,11 @@
-**该项目已经有beta版本发布！**
+**该项目已经有release版本发布！**
 
-**This Project now has beta release!**
+**This Project now has a release!**
 # 优先队列
+App 效果预览：
+[![m2fCS.md.png](https://s1.ax2x.com/2017/12/18/m2fCS.md.png)](https://simimg.com/i/m2fCS)
+
+[![m2i2h.md.png](https://s1.ax2x.com/2017/12/18/m2i2h.md.png)](https://simimg.com/i/m2i2h)
 
 这是一个任务管理App。
 
